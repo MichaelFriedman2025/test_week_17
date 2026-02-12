@@ -3,7 +3,7 @@ import os
 import json
 from mysql_connection import *
 
-kafka_server = os.getenv("KAFKA_SERVER","localhost:29092")
+kafka_server = os.getenv("KAFKA_SERVER","localhost:9092")
 
 consumer_config = {
     "bootstrap.servers": kafka_server,

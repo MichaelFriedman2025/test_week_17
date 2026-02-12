@@ -6,7 +6,7 @@ sql_user = os.getenv("SQL_USER","root")
 sql_password = os.getenv("SQL_PASSWORD","password")
 sql_db_name = os.getenv("SQL_DB_NAME","mydatabase")
 
-conn = mysql.connector.connect(host=sql_host,user=sql_user,database=sql_db_name)
+conn = mysql.connector.connect(host=sql_host,user=sql_user)
 
 mycursor = conn.cursor()
 mycursor.execute("CREATE DATABASE IF NOT EXISTS mydatabase")
@@ -21,20 +21,21 @@ mycursor.execute("""use mydatabase;
                         customerNumber int )""")
 
 mycursor.execute("""use mydatabase;
-                    CREATE TABLE IF NOT EXISTS customer(
-                        customerNumber int
-                        customerName varchar(255),
-                        contactLastName varchar(255),
-                        contactFirstName varchar(255),
-                        phone varchar(255),
-                        addressLine1 varchar(255),
-                        addressLine2 varchar(255),
-                        city varchar(255),
-                        state varchar(255),
-                        postalCode varchar(255),
-                        country varchar(255),
-                        salesRepEmployeeNumber varchar(255),
-                        creditLimit float)""")
+CREATE TABLE IF NOT EXISTS customer(
+    customerNumber int,
+    customerName varchar(255),
+    contactLastName varchar(255),
+    contactFirstName varchar(255),
+    phone varchar(255),
+    addressLine1 varchar(255),
+    addressLine2 varchar(255),
+    city varchar(255),
+    state varchar(255),
+    postalCode varchar(255),
+    country varchar(255),
+    salesRepEmployeeNumber varchar(255),
+    creditLimit float);
+            """)
 
 def insert_data_to_orders_table(data):
     sql = """

@@ -6,5 +6,4 @@ def ten_costumers_with_high_order():
         SELECT c.customerName, c.customerNumber FROM customers c
         JOIN orders o
         ON c.customerNumber = o.customerNumber
-        
     """)

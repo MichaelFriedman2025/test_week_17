@@ -27,7 +27,8 @@ while skip < len_data:
     documents = coll.find({},{"_id":0}).limit(limit).skip(skip)
     skip += limit
     for doc in documents:
+        print(doc)
         value = json.dumps(doc).encode("utf-8")
         producer.produce(topic="data",value=value,callback=delivery_report)
 
-producer.flush()
+    producer.flush()
