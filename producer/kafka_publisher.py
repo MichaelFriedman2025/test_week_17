@@ -2,7 +2,6 @@ from confluent_kafka import Producer
 import os
 import json
 from mongo_connection import get_connection
-import uuid
 
 coll = get_connection()
 
