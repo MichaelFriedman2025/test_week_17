@@ -1,6 +1,7 @@
 from confluent_kafka import Consumer
 import os
 import json
+from mysql_connection import *
 
 kafka_server = os.getenv("KAFKA_SERVER","localhost:29092")
 
@@ -25,7 +26,11 @@ try:
 
         value = msg.value().decode("utf-8")
         data = json.loads(value)
-        
+        for doc in data:
+            if doc["type"] == "customer":
+                insert_data_to_customers_table(doc)
+            else:
+                insert_data_to_orders_table(doc)
 except KeyboardInterrupt:
     print("\n🔴 Stopping consumer")
 

@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
+from dal import *
 
 
 app = FastAPI()
@@ -7,7 +8,8 @@ app = FastAPI()
 
 @app.get("/analytics/top-customers")
 def get_ten_costumers():
-    pass
+    res = ten_costumers_with_high_order()
+    return {"res":[res]}
 
 @app.get("/analytics/customers-without-orders")
 def get_all_costumers_without_orders():
